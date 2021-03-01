@@ -4,7 +4,7 @@ exports.seed = function (knex) {
       name: 'renter' // will get id 1
     },
     {
-      name: 'rentee' // will get id 2
+      name: 'owner' // will get id 2
     }
   ];
 
