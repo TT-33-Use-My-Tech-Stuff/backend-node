@@ -1,21 +1,21 @@
 exports.up = function (knex) {
   return knex.schema
     .createTable('roles', (table) => {
-      table.increments();
-      table.string('name', 128).notNullable().unique();
+      table.increments('role_id');
+      table.string('role', 64).notNullable();
     })
     .createTable('users', (table) => {
       table.increments('user_id');
       table.string('username', 128).notNullable().unique();
       table.string('password', 256).notNullable();
       table
-        .integer('role')
+        .integer('role_id')
         .unsigned()
-        .references('id')
+        .references('role_id')
         .inTable('roles')
         .onDelete('RESTRICT')
         .onUpdate('CASCADE')
-        .defaultTo(2);
+        .defaultTo(1);
     })
     .createTable('tech_hardware', (table) => {
       table.increments('tech_id');
