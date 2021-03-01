@@ -11,10 +11,11 @@ exports.up = function (knex) {
       table
         .integer('role')
         .unsigned()
-        .references('roles.id')
+        .references('id')
+        .inTable('roles')
         .onDelete('RESTRICT')
-        .onUpdate('CASCADE');
-    });
+        .onUpdate('CASCADE')
+        .defaultTo(2);
     })
     .createTable('tech_hardware', (table) => {
       table.increments('tech_id');
@@ -34,5 +35,6 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return knex.schema
     .dropTableIfExists('tech_hardware')
-    .dropTableIfExists('users');
+    .dropTableIfExists('users')
+    .dropTableIfExists('roles');
 };
