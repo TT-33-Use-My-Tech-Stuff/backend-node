@@ -1,13 +1,26 @@
 const router = require('express').Router();
-const bcryptjs = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const Users = require('./users-model.js');
-const { restricted, isValid } = require('./middleware');
-const { jwtSecret } = require('../../config/secrets.js');
+const {
+  restricted,
+  checkPayload,
+  checkUserInDb,
+  checkUserExists
+} = require('../middleware/middleware');
+const { jwtSecret } = require('../../config/secret.js');
 
-router.get('/users', restricted, (req, res) => {})
-
+//Allows someone with a valid token to look at a list of all users
+router.get('/', restricted, (req, res) => {
+  Users.find()
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 router.post(
   '/register',
@@ -15,7 +28,7 @@ router.post(
   checkUserInDb,
   async (req, res) => {
     try {
-      const hash = bcryptjs.hashSync(req.body.password, 10);
+      const hash = bcrypt.hashSync(req.body.password, 10);
       const newUser = await Users.add({
         username: req.body.username,
         password: hash
@@ -34,7 +47,7 @@ router.post('/login', checkUserExists, (req, res) => {
     .then(([user]) => {
       if (
         user &&
-        bcryptjs.compareSync(password, user.password)
+        bcrypt.compareSync(password, user.password)
       ) {
         const token = generateToken(user);
         res.status(200).json({
@@ -48,10 +61,11 @@ router.post('/login', checkUserExists, (req, res) => {
       }
     })
     .catch(() => {
-      res.status(500).json('username and password required');
+      res
+        .status(500)
+        .json('username and password required');
     });
 });
-
 
 const generateToken = (user) => {
   const payload = {
