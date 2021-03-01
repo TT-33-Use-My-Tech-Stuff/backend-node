@@ -1,15 +1,13 @@
 exports.seed = function (knex) {
-  const roles = [
-    {
-      name: 'renter' // will get id 1
-    },
-    {
-      name: 'owner' // will get id 2
-    }
-  ];
-
   return knex('roles')
-    .insert(roles)
+    .insert([
+      {
+        role: 'renter' // will get id 1
+      },
+      {
+        role: 'owner' // will get id 2
+      }
+    ])
     .then(() =>
       console.log(
         '\n== Seed data for roles table added. ==\n'
