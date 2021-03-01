@@ -43,6 +43,8 @@ Use My Tech Stuff: like AirBnB, but for high end electronics. Are you tired of p
 - add a GET user by id
 - add a PUT user by id
 - add a DELETE user by id
+- add a GET tech
 - add a GET tech by id
+- add a Post tech
 - add a PUT tech by id
 - add a DELETE tech by id
