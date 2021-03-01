@@ -11,7 +11,7 @@ server.use(express.json());
 server.use(cors());
 
 
-server.use('/api', usersRouter);
+server.use('/api/users', usersRouter);
 
 server.get('/', (req, res) => {
   res.json({ api: 'up & running' });
