@@ -1,6 +1,10 @@
 require('dotenv').config();
 const pg = require('pg');
 
+// if (process.env.NODE_ENV !== "production") {
+//   require("dotenv").config();
+// }
+
 if (process.env.DATABASE_URL) {
   pg.defaults.ssl = { rejectUnauthorized: false };
 }
@@ -10,10 +14,6 @@ const sharedConfig = {
   useNullAsDefault: true,
   migrations: { directory: './data/migrations' },
   seeds: { directory: './data/seeds' }
-  // pool: {
-  //   afterCreate: (conn, done) =>
-  //     conn.run('PRAGMA foreign_keys = ON', done)
-  // }
 };
 
 module.exports = {
