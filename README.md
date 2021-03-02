@@ -1,3 +1,8 @@
+## [Heroku Link](https://tt-33-use-my-tech.herokuapp.com/)
+<br>
+<hr>
+<br>
+
 ## **Endpoints**
 
 | REST Method |      Endpoint      | Description                          |
@@ -5,7 +10,7 @@
 |   **GET**   |     api/users      | with valid token, view list of users |
 |  **POST**   | api/users/register | register new user                    |
 |  **POST**   |  api/users/login   | login as a user                      |
-|   **GET**   |      api/tech      | get list of rentable tech hardwar    |
+|   **GET**   |      api/tech      | get list of rentable tech hardware   |
 
 <br>
 <hr>
