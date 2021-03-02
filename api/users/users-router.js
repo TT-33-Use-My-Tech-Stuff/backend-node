@@ -22,17 +22,17 @@ router.get('/', restricted, (req, res) => {
     });
 });
 
-// router.get('/:id', restricted, (req, res) => {
-//   const {id} = req.params
+router.get('/:id', restricted, (req, res) => {
+  const {id} = req.params
 
-//   Users.findById(id)
-//     .then((user) => {
-//       res.status(200).json(user);
-//     })
-//     .catch((err) => {
-//       res.status(500).json(err);
-//     });
-// });
+  Users.findById(id)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 
 
