@@ -6,4 +6,6 @@ router.get('/', restricted, (req, res) => {
   res.status(200).json(tech);
 });
 
+router
+
 module.exports = router;
