@@ -34,8 +34,6 @@ router.get('/:id', restricted, (req, res) => {
     });
 });
 
-
-
 router.post(
   '/register',
   checkPayload,
@@ -84,93 +82,28 @@ router.post('/login', checkUserExists, (req, res) => {
         .status(500)
         .json('username and password required');
     });
-
-  // try {
-  //   user &&
-  //   bcrypt.compareSync(password, user.password)
-  //     .then(() => {
-
-  //       const token = generateToken(user);
-  //         res.status(200).json({
-  //           message: `Welcome, ${user.username}`,
-  //           token
-  //         });
-  //     }
-
-  //   )
-  // } catch (error) {
-  //   res
-  //       .status(401)
-  //       .json({ message: 'Invalid credentials' });
-  // }
-
-  // try {(user) => {
-
-  //   if (
-  //     user &&
-  //     bcrypt.compareSync(password, user.password)
-  //   ) {
-  //     const token = generateToken(user);
-  //     res.status(200).json({
-  //       message: `Welcome, ${user.username}`,
-  //       token
-  //     });
-  //   } else {
-  //     res
-  //       .status(401)
-  //       .json({ message: 'Invalid credentials' });
-  //   }
-  // }
-  // } catch (error) {
-  //   res
-  //       .status(500)
-  //       .json('username and password required');
-  // }
-
-  // Users.findBy({ username: username })
-  //   .then(([user]) => {
-  //     if (
-  //       user &&
-  //       bcrypt.compareSync(password, user.password)
-  //     ) {
-  //       const token = generateToken(user);
-  //       res.status(200).json({
-  //         message: `Welcome, ${user.username}`,
-  //         token
-  //       });
-  //     } else {
-  //       res
-  //         .status(401)
-  //         .json({ message: 'Invalid credentials' });
-  //     }
-  //   })
-  //   .catch(() => {
-  //     res
-  //       .status(500)
-  //       .json('username and password required');
-  //   });
 });
 
 
-// router.delete('/:id', (req, res) => {
-//   const { id } = req.params;
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
 
-//   Users.remove(id)
-//     .then((deleted) => {
-//       if (deleted) {
-//         res.json({ message: 'User successfully removed' });
-//       } else {
-//         res.status(404).json({
-//           message: 'Could not find user with given id'
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res
-//         .status(500)
-//         .json({ message: 'Failed to delete user' });
-//     });
-// });
+  Users.remove(id)
+    .then((deleted) => {
+      if (deleted) {
+        res.json({ message: 'User successfully removed' });
+      } else {
+        res.status(404).json({
+          message: 'Could not find user with given id'
+        });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Failed to delete user' });
+    });
+});
 
 // router.put('/:id', (req, res) => {
 //   const { id } = req.params;

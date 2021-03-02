@@ -4,11 +4,14 @@ module.exports = {
   add,
   find,
   findBy,
-  findById
+  findById,
+  remove
 };
 
 function find() {
-  return db('users').select('user_id', 'username').orderBy('user_id');
+  return db('users')
+    .select('user_id', 'username')
+    .orderBy('user_id');
 }
 
 function findBy(filter) {
@@ -27,4 +30,13 @@ function findById(id) {
     .select('u.user_id', 'u.username')
     .where('u.user_id', id)
     .first();
+}
+
+function remove(id) {
+  return db('users as u')
+    .where('u.user_id', id)
+    .del()
+    .then(() => {
+      return db('users');
+    });
 }
