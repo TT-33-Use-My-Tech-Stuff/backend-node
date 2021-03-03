@@ -73,9 +73,17 @@ const checkUserExists = async (req, res, next) => {
       res.status(401).json('invalid credentials');
     }
   } catch (error) {
-    res.status(500).json('username and password required');
+    res.status(400).json('username and password required');
   }
 };
+
+const checkIfOwner = async (req, res, next) => {
+  try {
+    Users.findById(req.body.user_id)
+  } catch (error) {
+    res.status(401).json('You must be an owner to have permission to do that')
+  }
+}
 
 module.exports = {
   restricted,

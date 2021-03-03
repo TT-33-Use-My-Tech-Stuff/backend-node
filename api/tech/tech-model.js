@@ -11,7 +11,8 @@ module.exports = {
 
 function find() {
   return db('tech_hardware')
-    .select('tech_id', 'name', 'description')
+    .select('tech_id', 'name', 'description', 'u.username')
+    .join('users as u', 'u.user_id', 'tech_id')
     .orderBy('tech_id');
 }
 
@@ -31,7 +32,13 @@ async function add(tech) {
 
 function findById(id) {
   return db('tech_hardware as t')
-    .select('t.tech_id', 't.name', 't.description')
+    .select(
+      't.tech_id',
+      't.name',
+      't.description',
+      'u.username'
+    )
+    .join('users as u', 'u.user_id', 't.user_id')
     .where('t.tech_id', id)
     .first();
 }

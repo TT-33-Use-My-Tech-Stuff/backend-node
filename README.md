@@ -67,3 +67,5 @@ Use My Tech Stuff: like AirBnB, but for high end electronics. Are you tired of p
 - [ ] build tests for user models
 - [ ] build tests for tech models
 - [ ] change the displayed 1||2 values in the user object to renter||owner(turnary operation inside of a model?)
+- [ ] on signUp give the user a token
+- [ ] make a conditional so that a user can log in with either their username or email

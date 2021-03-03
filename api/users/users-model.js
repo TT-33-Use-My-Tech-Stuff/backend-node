@@ -21,8 +21,10 @@ function findBy(filter) {
       'u.user_id',
       'u.username',
       'u.email',
-      'u.password'
+      'u.password',
+      'r.role_id'
     )
+    .join('roles as r', 'r.role_id', 'u.role_id')
     .where(filter);
 }
 
