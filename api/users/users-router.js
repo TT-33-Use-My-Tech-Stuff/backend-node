@@ -23,7 +23,7 @@ router.get('/', restricted, (req, res) => {
 });
 
 router.get('/:id', restricted, (req, res) => {
-  const {id} = req.params
+  const { id } = req.params;
 
   Users.findById(id)
     .then((user) => {
@@ -84,8 +84,7 @@ router.post('/login', checkUserExists, (req, res) => {
     });
 });
 
-
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
 
   Users.remove(id)
@@ -105,14 +104,14 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
   Users.findById(id)
     .then((user) => {
       if (user) {
-        return  Users.update(id, changes);
+        return Users.update(id, changes);
       } else {
         res.status(404).json({
           message: 'Could not find user with given id'
@@ -128,7 +127,6 @@ router.put('/:id', (req, res) => {
         .json({ message: 'Failed to update user' });
     });
 });
-
 
 const generateToken = (user) => {
   const payload = {
