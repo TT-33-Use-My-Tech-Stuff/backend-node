@@ -1,7 +1,6 @@
 ## [Heroku Link](https://tt-33-use-my-tech.herokuapp.com/)
 
 <br>
-<hr>
 <br>
 
 ## **Endpoints**
@@ -15,6 +14,16 @@
 |   **PUT**   |   api/users/:id    | update user by id                    |
 | **DELETE**  |   api/users/:id    | delete user by id                    |
 |   **GET**   |      api/tech      | get list of rentable tech hardware   |
+
+<br>
+
+| REST Method |   Endpoint   | Description                          |
+| :---------: | :----------: | :----------------------------------- |
+|   **GET**   |   api/tech   | with valid token, view list of users |
+|  **POST**   |   api/tech   | post new tech                        |
+|   **GET**   | api/tech/:id | get tech by id                       |
+|   **PUT**   | api/tech/:id | update tech by id                    |
+| **DELETE**  | api/tech/:id | delete tech by id                    |
 
 <br>
 <hr>
@@ -46,14 +55,15 @@ Use My Tech Stuff: like AirBnB, but for high end electronics. Are you tired of p
 
 //TODO//
 
-- build out tech endpoints and models
-- deploy DB via heroku
-- add endpoints and models to filter out renters
-- add a GET user by id
-- add a PUT user by id
-- add a DELETE user by id
-- add a GET tech
-- add a GET tech by id
-- add a Post tech
-- add a PUT tech by id
-- add a DELETE tech by id
+- [ ] build out tech endpoints and models
+- [x] deploy DB via heroku
+- [ ] add endpoints and models to filter out renters
+- [x] add a GET user by id
+- [x] add a PUT user by id
+- [x] add a DELETE user by id
+- [x] add a GET tech
+- [x] add a GET tech by id
+- [ ] add a Post tech
+- [ ] add a PUT tech by id
+- [ ] add a DELETE tech by id
+- [ ] add tech route middleware
