@@ -28,6 +28,8 @@
 <br>
 <hr>
 
+## [Notion Link](https://www.notion.so/Use-My-Tech-Stuff-4af21e428f964d13b1c469c555db70b4)
+
 <br>
 <br>
 
@@ -55,16 +57,12 @@ Use My Tech Stuff: like AirBnB, but for high end electronics. Are you tired of p
 
 //TODO//
 
-- [x] build out tech endpoints and models
-- [x] deploy DB via heroku
-- [ ] add endpoints and models to filter out renters
-- [x] add a GET user by id
-- [x] add a PUT user by id
-- [x] add a DELETE user by id
-- [x] add a GET tech
-- [x] add a GET tech by id
-- [x] add a Post tech
-- [x] add a PUT tech by id
-- [x] add a DELETE tech by id
-- [x] add tech route middleware
+- [ ] fix register new user bug
+- [ ] add endpoints and models to filter out renters and find all the tech a renter has for rent
+- [ ] make it so that when a renter posts new tech, it automatically gets assigned their user id
+- [ ] make it so that only the renter can delete and edit their own tech (maybe use middle for this?)
 - [ ] test out tech route middleware
+- [ ] build tests for user routes
+- [ ] build tests for tech routes
+- [ ] build tests for user models
+- [ ] build tests for tech models
