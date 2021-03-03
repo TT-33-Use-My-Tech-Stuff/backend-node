@@ -30,6 +30,22 @@ const checkPayload = (req, res, next) => {
   }
 };
 
+const checkTechPayload = (req, res, next) => {
+  if (!req.body.name || !req.body.decription) {
+    res.status(401).json('username and password required');
+  } else {
+    next();
+  }
+};
+
+const checkEditTechPayload = (req, res, next) => {
+  if (req.body.name || req.body.decription) {
+    next();
+  } else {
+    res.status(401).json('New tech name or description is required');
+  }
+};
+
 const checkUserInDb = async (req, res, next) => {
   try {
     const rows = await Users.findBy({
@@ -64,6 +80,8 @@ const checkUserExists = async (req, res, next) => {
 module.exports = {
   restricted,
   checkPayload,
+  checkTechPayload,
+  checkEditTechPayload,
   checkUserInDb,
   checkUserExists
 };
