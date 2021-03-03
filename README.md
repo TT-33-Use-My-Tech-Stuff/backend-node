@@ -1,4 +1,5 @@
 ## [Heroku Link](https://tt-33-use-my-tech.herokuapp.com/)
+
 <br>
 <hr>
 <br>
@@ -10,6 +11,9 @@
 |   **GET**   |     api/users      | with valid token, view list of users |
 |  **POST**   | api/users/register | register new user                    |
 |  **POST**   |  api/users/login   | login as a user                      |
+|   **GET**   |   api/users/:id    | get user by id                       |
+|   **PUT**   |   api/users/:id    | update user by id                    |
+| **DELETE**  |   api/users/:id    | delete user by id                    |
 |   **GET**   |      api/tech      | get list of rentable tech hardware   |
 
 <br>
