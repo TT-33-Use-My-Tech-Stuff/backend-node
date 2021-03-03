@@ -55,7 +55,7 @@ Use My Tech Stuff: like AirBnB, but for high end electronics. Are you tired of p
 
 //TODO//
 
-- [ ] build out tech endpoints and models
+- [x] build out tech endpoints and models
 - [x] deploy DB via heroku
 - [ ] add endpoints and models to filter out renters
 - [x] add a GET user by id
@@ -63,7 +63,8 @@ Use My Tech Stuff: like AirBnB, but for high end electronics. Are you tired of p
 - [x] add a DELETE user by id
 - [x] add a GET tech
 - [x] add a GET tech by id
-- [ ] add a Post tech
-- [ ] add a PUT tech by id
-- [ ] add a DELETE tech by id
-- [ ] add tech route middleware
+- [x] add a Post tech
+- [x] add a PUT tech by id
+- [x] add a DELETE tech by id
+- [x] add tech route middleware
+- [ ] test out tech route middleware
