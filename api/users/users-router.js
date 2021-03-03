@@ -70,7 +70,9 @@ router.post('/login', checkUserExists, (req, res) => {
         const token = generateToken(user);
         res.status(200).json({
           message: `Welcome, ${user.username}`,
-          token
+          token,
+          user_id: user.user_id,
+          role: user.role_id === 2 ? 'Owner' : 'Renter'
         });
       } else {
         res
