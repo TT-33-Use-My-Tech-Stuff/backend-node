@@ -105,29 +105,29 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-// router.put('/:id', (req, res) => {
-//   const { id } = req.params;
-//   const changes = req.body;
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
 
-//   Users.findById(id)
-//     .then((user) => {
-//       if (user) {
-//         return Users.update(id, changes);
-//       } else {
-//         res.status(404).json({
-//           message: 'Could not find user with given id'
-//         });
-//       }
-//     })
-//     .then((updateduser) => {
-//       res.json(updateduser);
-//     })
-//     .catch((err) => {
-//       res
-//         .status(500)
-//         .json({ message: 'Failed to update user' });
-//     });
-// });
+  Users.findById(id)
+    .then((user) => {
+      if (user) {
+        return  Users.update(id, changes);
+      } else {
+        res.status(404).json({
+          message: 'Could not find user with given id'
+        });
+      }
+    })
+    .then((updateduser) => {
+      res.json(updateduser);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Failed to update user' });
+    });
+});
 
 
 const generateToken = (user) => {
