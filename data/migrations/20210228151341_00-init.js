@@ -7,7 +7,7 @@ exports.up = function (knex) {
     .createTable('users', (table) => {
       table.increments('user_id');
       table.string('username', 128).notNullable().unique();
-      table.string('email', 128).notNullable().unique();
+      table.string('username', 128).notNullable().unique();
       table.string('password', 256).notNullable();
       table
         .integer('role_id')

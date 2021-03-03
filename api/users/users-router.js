@@ -118,8 +118,8 @@ router.put('/:id', restricted, (req, res) => {
         });
       }
     })
-    .then((updateduser) => {
-      res.json(updateduser);
+    .then((updatedUser) => {
+      res.json(updatedUser);
     })
     .catch((err) => {
       res
