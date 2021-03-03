@@ -61,24 +61,24 @@ router.put('/:id', (req, res) => {
     });
 })
 
-// router.delete('/:id', (req, res) => {
-//   const { id } = req.params;
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
 
-//   Tech.remove(id)
-//     .then((deleted) => {
-//       if (deleted) {
-//         res.json({ message: 'Tech successfully removed' });
-//       } else {
-//         res.status(404).json({
-//           message: 'Could not find tech with given id'
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res
-//         .status(500)
-//         .json({ message: 'Failed to delete tech' });
-//     });
-// })
+  Tech.remove(id)
+    .then((deleted) => {
+      if (deleted) {
+        res.json({ message: 'Tech successfully removed' });
+      } else {
+        res.status(404).json({
+          message: 'Could not find tech with given id'
+        });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Failed to delete tech' });
+    });
+})
 
 module.exports = router;

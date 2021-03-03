@@ -1,7 +1,6 @@
 ## [Heroku Link](https://tt-33-use-my-tech.herokuapp.com/)
 
 <br>
-<hr>
 <br>
 
 ## **Endpoints**
@@ -23,6 +22,8 @@
 |   **GET**   |   api/tech   | with valid token, view list of users |
 |  **POST**   |   api/tech   | post new tech                        |
 |   **GET**   | api/tech/:id | get tech by id                       |
+|   **PUT**   | api/tech/:id | update tech by id                    |
+| **DELETE**  | api/tech/:id | delete tech by id                    |
 
 <br>
 <hr>
