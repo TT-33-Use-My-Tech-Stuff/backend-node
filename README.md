@@ -17,6 +17,14 @@
 |   **GET**   |      api/tech      | get list of rentable tech hardware   |
 
 <br>
+
+| REST Method |   Endpoint   | Description                          |
+| :---------: | :----------: | :----------------------------------- |
+|   **GET**   |   api/tech   | with valid token, view list of users |
+|  **POST**   |   api/tech   | post new tech                        |
+|   **GET**   | api/tech/:id | get tech by id                       |
+
+<br>
 <hr>
 
 <br>

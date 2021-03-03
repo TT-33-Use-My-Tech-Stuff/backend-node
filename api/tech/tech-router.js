@@ -37,29 +37,29 @@ router.post('/', async (req, res) => {
   }
 });
 
-// router.put('/:id', (req, res) => {
-//   const { id } = req.params;
-//   const changes = req.body;
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
 
-//   Users.findById(id)
-//     .then((tech) => {
-//       if (tech) {
-//         return Tech.update(id, changes);
-//       } else {
-//         res.status(404).json({
-//           message: 'Could not find tech with given id'
-//         });
-//       }
-//     })
-//     .then((updatedTech) => {
-//       res.json(updatedTech);
-//     })
-//     .catch((err) => {
-//       res
-//         .status(500)
-//         .json({ message: 'Failed to update tech' });
-//     });
-// })
+  Tech.findById(id)
+    .then((tech) => {
+      if (tech) {
+        return Tech.update(id, changes);
+      } else {
+        res.status(404).json({
+          message: 'Could not find tech with given id'
+        });
+      }
+    })
+    .then((updatedTech) => {
+      res.json(updatedTech);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Failed to update tech' });
+    });
+})
 
 // router.delete('/:id', (req, res) => {
 //   const { id } = req.params;
