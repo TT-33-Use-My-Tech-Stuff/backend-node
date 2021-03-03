@@ -1,8 +1,8 @@
 const router = require('express').Router();
-// const { restricted } = require('../middleware/middleware');
+const { restricted, checkTechPayload, checkEditTechPayload } = require('../middleware/middleware');
 const Tech = require('./tech-model');
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
   Tech.find()
     .then((tech) => {
       res.status(200).json(tech);
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
   const { id } = req.params;
 
   Tech.findById(id)
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', restricted, checkTechPayload, async (req, res) => {
   try {
     const newTech = await Tech.add({
       name: req.body.name,
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, checkEditTechPayload, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -61,7 +61,7 @@ router.put('/:id', (req, res) => {
     });
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
 
   Tech.remove(id)
