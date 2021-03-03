@@ -48,6 +48,7 @@ router.post(
       );
       const newUser = await Users.add({
         username: req.body.username,
+        email: req.body.email,
         password: hash
       });
       res.status(201).json(newUser);
