@@ -61,7 +61,9 @@ const checkEditUserPayload = (req, res, next) => {
   } else {
     res
       .status(401)
-      .json('New tech name or description is required');
+      .json(
+        'New user name, description, or role is required'
+      );
   }
 };
 
@@ -116,11 +118,11 @@ const checkIfOwner = async (req, res, next) => {
 
 //Check if the person editing the tech is the actuall owner of the tech
 const checkIfOwnerOfTech = async (req, res, next) => {
-  const id = req.body.user_id;
+  const {user_id, tech_id} = req.body;
   try {
-    Tech.findById(id) //!find a way to get the user id of user who is loggin in and compare with t.user_id
+    Tech.findById(tech_id)
       .then((tech) => {
-        if (tech.user_id === id) {
+        if (tech.user_id === user_id) {
           next();
         } else {
           res
