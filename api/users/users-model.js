@@ -10,8 +10,8 @@ module.exports = {
 };
 
 function find() {
-  return db('users')
-    .select('user_id', 'username')
+  return db('users ')
+    .select('user_id', 'username', 'role_id')
     .orderBy('user_id');
 }
 
@@ -29,7 +29,7 @@ function findBy(filter) {
 }
 
 async function add(user) {
-  const [id] = await db('users').insert(user, 'id');
+  const [id] = await db('users').insert(user, 'user_id');
   return findById(id);
 }
 

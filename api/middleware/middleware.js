@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../../config/secret');
 const Users = require('../users/users-model');
+const Tech = require('../tech/tech-model');
 
 const restricted = (req, res, next) => {
   const token = req.headers.authorization;
@@ -81,9 +82,10 @@ const checkUserExists = async (req, res, next) => {
   }
 };
 
+//Check if the user has the role of Owner or Renter
 const checkIfOwner = async (req, res, next) => {
   try {
-    const user = await Users.findById(req.body.user_id); //!find a way to get the user id
+    const user = await Users.findById(req.body.user_id);
     if (user.role_id === 2) {
       next();
     } else {
@@ -98,22 +100,24 @@ const checkIfOwner = async (req, res, next) => {
   }
 };
 
-const checkIfOwnerOfTech = async (req, res, next) => {
-  try {
-    const user = await Users.findById(req.body.user_id); //!find a way to get the user id
-    if (user.role_id === 2) {
-      next();
-    } else {
-      res
-        .status(401)
-        .json(
-          'You must be an owner to have permission to do that'
-        );
-    }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+//Check if the person editing the tech is the actuall owner of the tech
+// const checkIfOwnerOfTech = async (req, res, next) => {
+
+//   try {
+//     const tech = await Tech.findById(id); //!find a way to get the user id of user who is loggin in and compare with t.user_id
+//     if (t.user_id === u.user_id) {
+//       next();
+//     } else {
+//       res
+//         .status(401)
+//         .json(
+//           'You must be an owner to have permission to do that'
+//         );
+//     }
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
 
 module.exports = {
   restricted,
@@ -122,5 +126,6 @@ module.exports = {
   checkEditTechPayload,
   checkUserInDb,
   checkUserExists,
-  checkIfOwner
+  checkIfOwner,
+  checkIfOwnerOfTech
 };
