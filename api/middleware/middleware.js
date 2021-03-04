@@ -127,5 +127,5 @@ module.exports = {
   checkUserInDb,
   checkUserExists,
   checkIfOwner,
-  checkIfOwnerOfTech
+  // checkIfOwnerOfTech
 };
