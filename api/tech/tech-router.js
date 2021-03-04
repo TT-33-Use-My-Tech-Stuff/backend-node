@@ -3,7 +3,8 @@ const {
   restricted,
   checkTechPayload,
   checkEditTechPayload,
-  checkIfOwner
+  checkIfOwner,
+  checkIfOwnerOfTech
 } = require('../middleware/middleware');
 const Tech = require('./tech-model');
 
@@ -52,6 +53,7 @@ router.put(
   '/:id',
   restricted,
   checkEditTechPayload,
+  checkIfOwnerOfTech,
   (req, res) => {
     const { id } = req.params;
     const changes = req.body;
@@ -77,7 +79,7 @@ router.put(
   }
 );
 
-router.delete('/:id', restricted, (req, res) => {
+router.delete('/:id', restricted, checkIfOwnerOfTech, (req, res) => {
   const { id } = req.params;
 
   Tech.remove(id)

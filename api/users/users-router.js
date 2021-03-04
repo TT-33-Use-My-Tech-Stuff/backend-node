@@ -8,7 +8,8 @@ const {
   restricted,
   checkPayload,
   checkUserInDb,
-  checkUserExists
+  checkUserExists,
+  checkEditUserPayload
 } = require('../middleware/middleware');
 
 //Allows someone with a valid token to look at a list of all users
@@ -107,29 +108,34 @@ router.delete('/:id', restricted, (req, res) => {
     });
 });
 
-router.put('/:id', restricted, (req, res) => {
-  const { id } = req.params;
-  const changes = req.body;
+router.put(
+  '/:id',
+  restricted,
+  checkEditUserPayload,
+  (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
 
-  Users.findById(id)
-    .then((user) => {
-      if (user) {
-        return Users.update(id, changes);
-      } else {
-        res.status(404).json({
-          message: 'Could not find user with given id'
-        });
-      }
-    })
-    .then((updatedUser) => {
-      res.json(updatedUser);
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .json({ message: 'Failed to update user' });
-    });
-});
+    Users.findById(id)
+      .then((user) => {
+        if (user) {
+          return Users.update(id, changes);
+        } else {
+          res.status(404).json({
+            message: 'Could not find user with given id'
+          });
+        }
+      })
+      .then((updatedUser) => {
+        res.json(updatedUser);
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ message: 'Failed to update user' });
+      });
+  }
+);
 
 const generateToken = (user) => {
   const payload = {
@@ -137,7 +143,7 @@ const generateToken = (user) => {
     username: user.username
   };
   const options = {
-    expiresIn: '3h'
+    expiresIn: '6h'
   };
   return jwt.sign(payload, jwtSecret, options);
 };

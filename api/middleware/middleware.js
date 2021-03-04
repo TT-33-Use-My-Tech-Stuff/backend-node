@@ -51,6 +51,22 @@ const checkEditTechPayload = (req, res, next) => {
   }
 };
 
+const checkEditUserPayload = (req, res, next) => {
+  if (
+    req.body.username ||
+    req.body.email ||
+    req.body.role_id
+  ) {
+    next();
+  } else {
+    res
+      .status(401)
+      .json(
+        'New user name, description, or role is required'
+      );
+  }
+};
+
 const checkUserInDb = async (req, res, next) => {
   try {
     const rows = await Users.findBy({
@@ -101,31 +117,33 @@ const checkIfOwner = async (req, res, next) => {
 };
 
 //Check if the person editing the tech is the actuall owner of the tech
-// const checkIfOwnerOfTech = async (req, res, next) => {
-
-//   try {
-//     const tech = await Tech.findById(id); //!find a way to get the user id of user who is loggin in and compare with t.user_id
-//     if (t.user_id === u.user_id) {
-//       next();
-//     } else {
-//       res
-//         .status(401)
-//         .json(
-//           'You must be an owner to have permission to do that'
-//         );
-//     }
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
+const checkIfOwnerOfTech = async (req, res, next) => {
+  const { user_id, tech_id } = req.body;
+  try {
+    Tech.findById(tech_id).then((tech) => {
+      if (tech.user_id === user_id) {
+        next();
+      } else {
+        res
+          .status(401)
+          .json(
+            'You must be an owner to have permission to do that'
+          );
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 module.exports = {
   restricted,
   checkPayload,
+  checkEditUserPayload,
   checkTechPayload,
   checkEditTechPayload,
   checkUserInDb,
   checkUserExists,
   checkIfOwner,
-  // checkIfOwnerOfTech
+  checkIfOwnerOfTech
 };
