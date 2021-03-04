@@ -14,6 +14,12 @@ exports.seed = function (knex) {
       password: 'abc123',
       role_id: 2
     },
-    
+    {
+      user_id: 3,
+      username: 'xXx_3lite_Snipes_xXx',
+      email: 'snipes@snipes.com',
+      password: 'abc123',
+      role_id: 1
+    }
   ]);
 };

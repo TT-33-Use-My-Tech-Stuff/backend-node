@@ -10,8 +10,8 @@ module.exports = {
 };
 
 function find() {
-  return db('users')
-    .select('user_id', 'username')
+  return db('users ')
+    .select('user_id', 'username', 'role_id')
     .orderBy('user_id');
 }
 
@@ -35,7 +35,13 @@ async function add(user) {
 
 function findById(id) {
   return db('users as u')
-    .select('u.user_id', 'u.username', 'u.email')
+    .select(
+      'u.user_id',
+      'u.username',
+      'u.email',
+      'r.role_id'
+    )
+    .join('roles as r', 'r.role_id', 'u.role_id')
     .where('u.user_id', id)
     .first();
 }
