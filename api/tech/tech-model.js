@@ -32,12 +32,7 @@ async function add(tech) {
 
 function findById(id) {
   return db('tech_hardware as t')
-    .select(
-      't.tech_id',
-      't.name',
-      't.description',
-      'u.username'
-    )
+    .select('t.tech_id', 't.name', 't.description', 'u.username')
     .join('users as u', 'u.user_id', 't.user_id')
     .where('t.tech_id', id)
     .first();

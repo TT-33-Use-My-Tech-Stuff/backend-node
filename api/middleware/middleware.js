@@ -31,8 +31,10 @@ const checkPayload = (req, res, next) => {
 };
 
 const checkTechPayload = (req, res, next) => {
-  if (!req.body.name || !req.body.decription) {
-    res.status(401).json('username and password required');
+  if (!req.body.name || !req.body.description) {
+    res
+      .status(401)
+      .json('name and description of tech required');
   } else {
     next();
   }
@@ -42,7 +44,9 @@ const checkEditTechPayload = (req, res, next) => {
   if (req.body.name || req.body.decription) {
     next();
   } else {
-    res.status(401).json('New tech name or description is required');
+    res
+      .status(401)
+      .json('New tech name or description is required');
   }
 };
 
@@ -79,11 +83,37 @@ const checkUserExists = async (req, res, next) => {
 
 const checkIfOwner = async (req, res, next) => {
   try {
-    Users.findById(req.body.user_id)
-  } catch (error) {
-    res.status(401).json('You must be an owner to have permission to do that')
+    const user = await Users.findById(req.body.user_id); //!find a way to get the user id
+    if (user.role_id === 2) {
+      next();
+    } else {
+      res
+        .status(401)
+        .json(
+          'You must be an owner to have permission to do that'
+        );
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
-}
+};
+
+const checkIfOwnerOfTech = async (req, res, next) => {
+  try {
+    const user = await Users.findById(req.body.user_id); //!find a way to get the user id
+    if (user.role_id === 2) {
+      next();
+    } else {
+      res
+        .status(401)
+        .json(
+          'You must be an owner to have permission to do that'
+        );
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 module.exports = {
   restricted,
@@ -91,5 +121,6 @@ module.exports = {
   checkTechPayload,
   checkEditTechPayload,
   checkUserInDb,
-  checkUserExists
+  checkUserExists,
+  checkIfOwner
 };
