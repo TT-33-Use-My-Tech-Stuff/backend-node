@@ -40,6 +40,7 @@ router.post(
       const newTech = await Tech.add({
         name: req.body.name,
         description: req.body.description,
+        tech_img: req.body.tech_img,
         user_id: req.body.user_id
       });
       res.status(201).json(newTech);

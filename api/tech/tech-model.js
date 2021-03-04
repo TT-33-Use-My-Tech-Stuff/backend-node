@@ -12,13 +12,13 @@ module.exports = {
 
 function find() {
   return db('tech_hardware')
-    .select('tech_id', 'name', 'description', 'user_id')
+    .select('tech_id', 'name', 'description', 'tech_img', 'user_id')
     .orderBy('user_id');
 }
 
 function findBy(filter) {
   return db('tech_hardware as t')
-    .select('t.tech_id', 't.name', 't.description')
+    .select('t.tech_id', 't.name', 't.description', 't.tech_img')
     .where(filter);
 }
 
@@ -36,6 +36,7 @@ function findById(id) {
       't.tech_id',
       't.name',
       't.description',
+      't.tech_img',
       'u.username',
       'u.user_id'
     )

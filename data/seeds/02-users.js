@@ -5,6 +5,7 @@ exports.seed = function (knex) {
       username: 'Peter',
       email: 'peter@peter.com',
       password: 'abc123',
+      ava_img: 'url',
       role_id: 2
     },
     {
@@ -12,6 +13,7 @@ exports.seed = function (knex) {
       username: 'OscFig',
       email: 'oscfig@oscfig.com',
       password: 'abc123',
+      ava_img: 'url',
       role_id: 2
     },
     {
@@ -19,6 +21,7 @@ exports.seed = function (knex) {
       username: 'xXx_3lite_Snipes_xXx',
       email: 'snipes@snipes.com',
       password: 'abc123',
+      ava_img: 'url',
       role_id: 1
     }
   ]);
