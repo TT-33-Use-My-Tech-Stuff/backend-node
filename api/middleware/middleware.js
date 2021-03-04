@@ -55,7 +55,7 @@ const checkEditUserPayload = (req, res, next) => {
   if (
     req.body.username ||
     req.body.email ||
-    req.body.role
+    req.body.role_id
   ) {
     next();
   } else {
@@ -118,20 +118,19 @@ const checkIfOwner = async (req, res, next) => {
 
 //Check if the person editing the tech is the actuall owner of the tech
 const checkIfOwnerOfTech = async (req, res, next) => {
-  const {user_id, tech_id} = req.body;
+  const { user_id, tech_id } = req.body;
   try {
-    Tech.findById(tech_id)
-      .then((tech) => {
-        if (tech.user_id === user_id) {
-          next();
-        } else {
-          res
-            .status(401)
-            .json(
-              'You must be an owner to have permission to do that'
-            );
-        }
-      });
+    Tech.findById(tech_id).then((tech) => {
+      if (tech.user_id === user_id) {
+        next();
+      } else {
+        res
+          .status(401)
+          .json(
+            'You must be an owner to have permission to do that'
+          );
+      }
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -140,6 +139,7 @@ const checkIfOwnerOfTech = async (req, res, next) => {
 module.exports = {
   restricted,
   checkPayload,
+  checkEditUserPayload,
   checkTechPayload,
   checkEditTechPayload,
   checkUserInDb,

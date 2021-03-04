@@ -79,7 +79,7 @@ router.put(
   }
 );
 
-router.delete('/:id', restricted, (req, res) => {
+router.delete('/:id', restricted, checkIfOwnerOfTech, (req, res) => {
   const { id } = req.params;
 
   Tech.remove(id)
