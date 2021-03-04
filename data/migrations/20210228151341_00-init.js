@@ -12,7 +12,7 @@ exports.up = function (knex) {
       table
         .string('ava_img', 512)
         .defaultTo(
-          'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fbrainstormcursos.com.br%2Fwp-content%2Fuploads%2F2016%2F01%2Fdefault-avatar.jpg&f=1&nofb=1'
+          'https://64.media.tumblr.com/84365fe19039b5fd917d6d449ca86290/tumblr_op4lb5DPRe1qg6rkio1_1280.jpg'
         );
       table
         .integer('role_id')
@@ -30,7 +30,7 @@ exports.up = function (knex) {
       table
         .string('tech_img', 512)
         .defaultTo(
-          'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.iconfinder.com%2Fdata%2Ficons%2Fbusiness-seo-vol-1%2F512%2FControl_Computer_Cog_Gear_PC_Monitor_Screen_Management-512.png&f=1&nofb=1'
+          'https://cdn4.iconfinder.com/data/icons/computer-and-web/80/Computer_and_web_icons-06-512.png'
         );
       table
         .integer('user_id')
