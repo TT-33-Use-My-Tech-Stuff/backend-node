@@ -25,7 +25,7 @@ const restricted = (req, res, next) => {
 
 const checkPayload = (req, res, next) => {
   if (!req.body.username || !req.body.password) {
-    res.status(401).json('username and password required');
+    res.status(401).json('Username and password required');
   } else {
     next();
   }
@@ -35,19 +35,19 @@ const checkTechPayload = (req, res, next) => {
   if (!req.body.name || !req.body.description) {
     res
       .status(401)
-      .json('name and description of tech required');
+      .json('Name and description of tech required');
   } else {
     next();
   }
 };
 
 const checkEditTechPayload = (req, res, next) => {
-  if (req.body.name || req.body.decription) {
+  if (req.body.name || req.body.decription || req.body.tech_img) {
     next();
   } else {
     res
       .status(401)
-      .json('New tech name or description is required');
+      .json('New tech name, description or image is required');
   }
 };
 
@@ -55,6 +55,7 @@ const checkEditUserPayload = (req, res, next) => {
   if (
     req.body.username ||
     req.body.email ||
+    req.body.ava_img ||
     req.body.role_id
   ) {
     next();
@@ -62,7 +63,7 @@ const checkEditUserPayload = (req, res, next) => {
     res
       .status(401)
       .json(
-        'New user name, description, or role is required'
+        'New user name, description, avatar or role is required'
       );
   }
 };

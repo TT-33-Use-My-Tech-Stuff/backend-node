@@ -10,8 +10,8 @@ module.exports = {
 };
 
 function find() {
-  return db('users ')
-    .select('user_id', 'username', 'role_id')
+  return db('users')
+    .select('user_id', 'username', 'ava_img', 'role_id')
     .orderBy('user_id');
 }
 
@@ -22,6 +22,7 @@ function findBy(filter) {
       'u.username',
       'u.email',
       'u.password',
+      'u.ava_img',
       'r.role_id'
     )
     .join('roles as r', 'r.role_id', 'u.role_id')
@@ -39,6 +40,7 @@ function findById(id) {
       'u.user_id',
       'u.username',
       'u.email',
+      'u.ava_img',
       'r.role_id'
     )
     .join('roles as r', 'r.role_id', 'u.role_id')
