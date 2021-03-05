@@ -42,12 +42,18 @@ const checkTechPayload = (req, res, next) => {
 };
 
 const checkEditTechPayload = (req, res, next) => {
-  if (req.body.name || req.body.decription || req.body.tech_img) {
+  if (
+    req.body.name ||
+    req.body.decription ||
+    req.body.tech_img
+  ) {
     next();
   } else {
     res
       .status(401)
-      .json('New tech name, description or image is required');
+      .json(
+        'New tech name, description or image is required'
+      );
   }
 };
 
@@ -119,7 +125,8 @@ const checkIfOwner = async (req, res, next) => {
 
 //Check if the person editing the tech is the actuall owner of the tech
 const checkIfOwnerOfTech = async (req, res, next) => {
-  const { user_id, tech_id } = req.body;
+  const { user_id } = req.body;
+  const tech_id = req.params.id;
   try {
     Tech.findById(tech_id).then((tech) => {
       if (tech.user_id === user_id) {
