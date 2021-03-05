@@ -57,15 +57,11 @@ Use My Tech Stuff: like AirBnB, but for high end electronics. Are you tired of p
 
 //TODO//
 
-- [x] fix register new user bug
+- [ ] fix frontend DELETE bug w/Paul
 - [ ] add endpoints and models to filter out renters and find all the tech a renter has for rent (join statement in model?)
-- [x] make it so that when a renter posts new tech, it automatically gets assigned their user id
-- [x] make it so that only the renter can delete and edit their own tech (maybe use middle for this?)
-- [ ] test out tech route middleware
 - [ ] build tests for user routes
 - [ ] build tests for tech routes
 - [ ] build tests for user models
 - [ ] build tests for tech models
-- [x] change the displayed 1||2 values in the user object to renter||owner(turnary operation inside of a model?)
-- [x] on signUp give the user a token(automatic login will be handled by the front end)
+- [ ] build tests for middleware
 - [ ] make a conditional so that a user can log in with either their username or email

@@ -9,16 +9,26 @@ module.exports = {
   update
 };
 
-
 function find() {
   return db('tech_hardware')
-    .select('tech_id', 'name', 'description', 'tech_img', 'user_id')
-    .orderBy('user_id');
+    .select(
+      'tech_id',
+      'name',
+      'description',
+      'tech_img',
+      'user_id'
+    )
+    .orderBy('tech_id');
 }
 
 function findBy(filter) {
   return db('tech_hardware as t')
-    .select('t.tech_id', 't.name', 't.description', 't.tech_img')
+    .select(
+      't.tech_id',
+      't.name',
+      't.description',
+      't.tech_img'
+    )
     .where(filter);
 }
 
