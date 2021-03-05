@@ -46,8 +46,8 @@ function findById(id) {
 }
 
 function remove(id) {
-  return db('tech_hardware as t')
-    .where('t.tech_id', id)
+  return db('tech_hardware')
+    .where('tech_id', id)
     .del()
     .then(() => {
       return db('tech_hardware');
